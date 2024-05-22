@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 grid-margin stretch-card mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-5">Modifier un établissement</h4>
+        <form method="post" action="{{ etablissement.get_absolute_url_edit }}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom de l'Etablissement" value="{{ etablissement.nom }}">
+            {% if errors.nom %}
+              <p class="text-danger">{{ errors.nom }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="type">Type</label>
+            <select class="form-select" name="type" id="type">
+              <option value="Faculté" {% if etablissement.type == 'Faculté' %}selected{% endif %}>Faculté</option>
+              <option value="Ecole" {% if etablissement.type == 'Ecole' %}selected{% endif %}>Ecole</option>
+            </select>
+            {% if errors.type %}
+              <p class="text-danger">{{ errors.type }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="doyen">Doyen</label>
+            <select class="form-select" name="doyen" id="doyen">
+              {% for enseignant in enseignants %}
+                <option value="{{ enseignant.get_object_id }}" {% if enseignant.get_object_id == etablissement.doyen.get_object_id %}selected{% endif %}>{{ enseignant.nom }} {{ enseignant.prenom }}</option>
+              {% endfor %}
+            </select>
+            {% if errors.doyen %}
+              <p class="text-danger">{{ errors.doyen }}</p>
+            {% endif %}
+          </div>
+          <button type="submit" class="btn btn-primary me-2">Modifier</button>
+          <a href="{% url 'etablissement_list' %}" class="btn btn-dark">Annuler</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

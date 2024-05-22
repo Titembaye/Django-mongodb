@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="col-md-8 grid-margin stretch-card mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+          <h4 class="card-title mb-1">Détails de l'Unité d'Enseignement (UE)</h4>
+          <a href="{% url 'ue_list' %}" class="btn btn-secondary mb-1">Retour</a>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="preview-list">
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-primary">
+                    <i class="mdi mdi-book"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">{{ ue.code }}</h6>
+                    <p class="text-muted mb-0">{{ ue.intitule }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="mdi mdi-information-outline"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">Description</h6>
+                    <p class="text-muted mb-0">{{ ue.description }}</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Add other details as needed -->
+              <!-- You can add more fields similarly -->
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+          <a href="{{ ue.get_absolute_url_edit }}" class="btn btn-primary">Modifier</a>
+          <a href="{{ ue.get_absolute_url_delete }}" class="btn btn-danger">Supprimer</a>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

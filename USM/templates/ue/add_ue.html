@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 grid-margin stretch-card mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Ajouter une UE</h4>
+        <form method="post" action="{% url 'ue_create' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="id_code">Code</label>
+            <input type="text" name="code" class="form-control" id="id_code" placeholder="Code">
+            {% if form.code.errors %}
+              <p class="text-danger">{{ form.code.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="id_intitule">Intitulé</label>
+            <input type="text" name="intitule" class="form-control" id="id_intitule" placeholder="Intitulé">
+            {% if form.intitule.errors %}
+              <p class="text-danger">{{ form.intitule.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="id_description">Description</label>
+            <textarea name="description" class="form-control" id="id_description" placeholder="Description"></textarea>
+            {% if form.description.errors %}
+              <p class="text-danger">{{ form.description.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="id_nbCredits">Nombre de Crédits</label>
+            <input type="number" name="nbCredits" class="form-control" id="id_nbCredits" placeholder="Nombre de Crédits">
+            {% if form.nbCredits.errors %}
+              <p class="text-danger">{{ form.nbCredits.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="id_responsable">Responsable</label>
+            <select name="responsable" class="form-control" id="id_responsable">
+              {% for enseignant in enseignants %}
+                <option value="{{ enseignant.get_object_id }}">{{ enseignant.nom }} {{ enseignant.prenom }}</option>
+              {% endfor %}
+            </select>
+            {% if form.responsable.errors %}
+              <p class="text-danger">{{ form.responsable.errors }}</p>
+            {% endif %}
+          </div>
+          <button type="submit" class="btn btn-primary me-2">Ajouter</button>
+          <a href="{% url 'ue_list' %}" class="btn btn-dark">Annuler</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

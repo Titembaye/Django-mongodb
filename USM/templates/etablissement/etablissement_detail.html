@@ -1,0 +1,93 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="col-md-8 grid-margin stretch-card mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+          <h4 class="card-title mb-1">Détails de l'établissement</h4>
+          <a href="{% url 'etablissement_list' %}" class="btn btn-secondary mb-1">Retour</a>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="preview-list">
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-primary">
+                    <i class="mdi mdi-school"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">{{ etablissement.nom }}</h6>
+                    <p class="text-muted mb-0">{{ etablissement.type }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="mdi mdi-map-marker"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">Adresse</h6>
+                    <p class="text-muted mb-0">{{ etablissement.adresse }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="mdi mdi-email"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">Email</h6>
+                    <p class="text-muted mb-0">{{ etablissement.email }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="mdi mdi-phone"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">Téléphone</h6>
+                    <p class="text-muted mb-0">{{ etablissement.telephone }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-danger">
+                    <i class="mdi mdi-account"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">Doyen</h6>
+                    <p class="text-muted mb-0">{{ etablissement.doyen.nom }} {{ etablissement.doyen.prenom }}</p>
+                  </div>
+                  <div class="ms-5">
+                    <a href="{% url 'enseignant_detail' etablissement.doyen.get_object_id %}" class="btn btn-info btn-sm">Voir Détails</a>
+                  </div>
+                </div>
+              </div>
+              <!-- You can add more fields similarly -->
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+          <a href="{{ etablissement.get_absolute_url_edit }}" class="btn btn-primary">Modifier</a>
+          <a href="{{ etablissement.get_absolute_url_delete }}" class="btn btn-danger">Supprimer</a>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

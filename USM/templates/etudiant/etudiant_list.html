@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-8 mx-auto grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title">Liste des Étudiants</h4>
+          <a href="{% url 'etudiant_create' %}" class="btn btn-sm btn-warning">+ Ajouter</a>
+        </div>
+        {% if error %}
+          <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de Naissance</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Niveau</th>
+                <th>Filière</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for etudiant in etudiants %}
+              <tr>
+                <td>{{ etudiant.nom }}</td>
+                <td>{{ etudiant.prenom }}</td>
+                <td>{{ etudiant.date_nais }}</td>
+                <td>{{ etudiant.contact }}</td>
+                <td>{{ etudiant.email }}</td>
+                <td>{{ etudiant.niveau }}</td>
+                <td>{{ etudiant.filiere.intitule }}</td>
+                <td>
+                  <a href="{{ etudiant.get_absolute_url_detail }}" class="btn btn-sm btn-info">Détails</a>
+                  <a href="{{ etudiant.get_absolute_url_edit }}" class="btn btn-sm btn-primary">Modifier</a>
+                  <a href="{{ etudiant.get_absolute_url_delete }}" class="btn btn-sm btn-danger">Supprimer</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+          <nav>
+            <ul class="pagination">
+              {% if etudiants.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ etudiants.previous_page_number }}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              {% endif %}
+              {% for num in etudiants.paginator.page_range %}
+              {% if etudiants.number == num %}
+              <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+              {% elif num > etudiants.number|add:'-5' and num < etudiants.number|add:'5' %}
+              <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+              {% endif %}
+              {% endfor %}
+              {% if etudiants.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ etudiants.next_page_number }}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

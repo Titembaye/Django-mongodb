@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 grid-margin stretch-card mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-5">Ajouter un établissement</h4>
+        <form method="post" action="{% url 'etablissement_create' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom de l'Etablissement">
+            {% if form.nom.errors %}
+              <p class="text-danger">{{ form.nom.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="type">Type</label>
+            <select class="form-select" name="type" id="type">
+              <option value="Faculté">Faculté</option>
+              <option value="Ecole">Ecole</option>
+            </select>
+            {% if form.type.errors %}
+              <p class="text-danger">{{ form.type.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="doyen">Doyen</label>
+            <select class="form-select" name="doyen" id="doyen">
+              {% for enseignant in enseignants %}
+                <option value="{{ enseignant.get_object_id }}">{{ enseignant.nom }} {{ enseignant.prenom }}</option>
+              {% endfor %}
+            </select>
+            {% if form.doyen.errors %}
+              <p class="text-danger">{{ form.doyen.errors }}</p>
+            {% endif %}
+          </div>
+          <button type="submit" class="btn btn-primary me-2">Ajouter</button>
+          <a href="{% url 'etablissement_list' %}" class="btn btn-dark">Annuler</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

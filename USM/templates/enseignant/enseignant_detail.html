@@ -1,0 +1,93 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 mx-auto grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+          <h4 class="card-title">Détails de l'enseignant</h4>
+          <a href="{% url 'enseignant_list' %}" class="btn btn-secondary mb-1">Retour</a>
+        </div>
+        <div class="preview-list">
+          <div class="preview-item border-bottom">
+            <div class="preview-thumbnail">
+              <div class="preview-icon bg-primary">
+                <i class="mdi mdi-account"></i>
+              </div>
+            </div>
+            <div class="preview-item-content d-sm-flex flex-grow">
+              <div class="flex-grow">
+                <h6 class="preview-subject">{{ enseignant.nom }} {{ enseignant.prenom }}</h6>
+                <p class="text-muted mb-0">Grade: {{ enseignant.grade }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="preview-item border-bottom">
+            <div class="preview-thumbnail">
+              <div class="preview-icon bg-info">
+                <i class="mdi mdi-email"></i>
+              </div>
+            </div>
+            <div class="preview-item-content d-sm-flex flex-grow">
+              <div class="flex-grow">
+                <h6 class="preview-subject">Email</h6>
+                <p class="text-muted mb-0">{{ enseignant.email }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="preview-item border-bottom">
+            <div class="preview-thumbnail">
+              <div class="preview-icon bg-info">
+                <i class="mdi mdi-school"></i>
+              </div>
+            </div>
+            <div class="preview-item-content d-sm-flex flex-grow">
+              <div class="flex-grow">
+                <h6 class="preview-subject">Spécialité</h6>
+                <p class="text-muted mb-0">{{ enseignant.specialite }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="preview-item border-bottom">
+            <div class="preview-thumbnail">
+              <div class="preview-icon bg-success">
+                <i class="mdi mdi-phone"></i>
+              </div>
+            </div>
+            <div class="preview-item-content d-sm-flex flex-grow">
+              <div class="flex-grow">
+                <h6 class="preview-subject">Contact</h6>
+                <p class="text-muted mb-0">{{ enseignant.contact }}</p>
+              </div>
+            </div>
+          </div>
+            <div class="preview-item">
+            <div class="preview-thumbnail">
+              <div class="preview-icon bg-warning">
+                <i class="mdi mdi-book-open"></i>
+              </div>
+            </div>
+            <div class="preview-item-content d-sm-flex flex-grow">
+              <div class="flex-grow">
+                <h6 class="preview-subject">Liste des UEs responsables</h6>
+                <ul>
+                  {% for ue in enseignant.ues.all %}
+                    <li>{{ ue.intitule }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Ajoutez d'autres détails ici si nécessaire -->
+        </div>
+            <div class="mt-4 d-flex justify-content-between">
+          <a href="{{ enseignant.get_absolute_url_edit }}" class="btn btn-primary">Modifier</a>
+          <a href="{{ enseignant.get_absolute_url_edit }}" class="btn btn-danger">Supprimer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

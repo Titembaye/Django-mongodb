@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 grid-margin stretch-card mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Modifier un personnel administratif</h4>
+        <form method="post" action="{{ personnel.get_absolute_url_edit }}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom" value="{{ form.nom.value }}">
+            {% if form.nom.errors %}
+              <p class="text-danger">{{ form.nom.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Prénom" value="{{ form.prenom.value }}">
+            {% if form.prenom.errors %}
+              <p class="text-danger">{{ form.prenom.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="poste">Poste</label>
+            <input type="text" name="poste" class="form-control" id="poste" placeholder="Poste" value="{{ form.poste.value }}">
+            {% if form.poste.errors %}
+              <p class="text-danger">{{ form.poste.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="contact">Contact</label>
+            <input type="text" name="contact" class="form-control" id="contact" placeholder="Contact" value="{{ form.contact.value }}">
+            {% if form.contact.errors %}
+              <p class="text-danger">{{ form.contact.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="{{ form.email.value }}">
+            {% if form.email.errors %}
+              <p class="text-danger">{{ form.email.errors }}</p>
+            {% endif %}
+          </div>
+          <button type="submit" class="btn btn-primary me-2">Modifier</button>
+          <a href="{% url 'personnel_list' %}" class="btn btn-dark">Annuler</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

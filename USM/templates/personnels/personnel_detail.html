@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="col-md-8 grid-margin stretch-card mx-auto">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex flex-row justify-content-between">
+                <h4 class="card-title mb-1">Détails du Personnel</h4>
+                <a href="{% url 'personnel_list' %}" class="btn btn-secondary mb-1">Retour</a>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="preview-list">
+                        <div class="preview-item border-bottom">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-primary">
+                                    <i class="mdi mdi-account"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content d-sm-flex flex-grow">
+                                <div class="flex-grow">
+                                    <h6 class="preview-subject">{{ personnel.nom }} {{ personnel.prenom }}</h6>
+                                    <p class="text-muted mb-0">{{ personnel.poste }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-item border-bottom">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-info">
+                                    <i class="mdi mdi-email"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content d-sm-flex flex-grow">
+                                <div class="flex-grow">
+                                    <h6 class="preview-subject">Email</h6>
+                                    <p class="text-muted mb-0">{{ personnel.email }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-item border-bottom">
+                            <div class="preview-thumbnail">
+                                <div class="preview-icon bg-warning">
+                                    <i class="mdi mdi-phone"></i>
+                                </div>
+                            </div>
+                            <div class="preview-item-content d-sm-flex flex-grow">
+                                <div class="flex-grow">
+                                    <h6 class="preview-subject">Téléphone</h6>
+                                    <p class="text-muted mb-0">{{ personnel.telephone }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-between">
+                <a href="{{ personnel.get_absolute_url_edit }}" class="btn btn-primary">Modifier</a>
+                <a href="{{ personnel.get_absolute_url_delete }}" class="btn btn-danger">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

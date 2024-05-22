@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 mx-auto grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Modifier les informations de l'enseignant</h4>
+        <form method="post" action="{{ enseignant.get_absolute_url_edit }}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom" value="{{ enseignant.nom }}">
+            {% if errors.nom %}
+              <p class="text-danger">{{ errors.nom }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Prénom" value="{{ enseignant.prenom }}">
+            {% if errors.prenom %}
+              <p class="text-danger">{{ errors.prenom }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="specialite">Spécialité</label>
+            <input type="text" name="specialite" class="form-control" id="specialite" placeholder="Spécialité" value="{{ enseignant.specialite }}">
+            {% if errors.specialite %}
+              <p class="text-danger">{{ errors.specialite }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="grade">Grade</label>
+            <input type="text" name="grade" class="form-control" id="grade" placeholder="Grade" value="{{ enseignant.grade }}">
+            {% if errors.grade %}
+              <p class="text-danger">{{ errors.grade }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="contact">Contact</label>
+            <input type="text" name="contact" class="form-control" id="contact" placeholder="Contact" value="{{ enseignant.contact }}">
+            {% if errors.contact %}
+              <p class="text-danger">{{ errors.contact }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="{{ enseignant.email }}">
+            {% if errors.email %}
+              <p class="text-danger">{{ errors.email }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="ues">Unités d'Enseignements</label>
+            <select multiple class="form-select" name="ues" id="ues">
+              {% for ue in ues %}
+              <option value="{{ ue.get_object_id }}" {% if ue in enseignant.ues.all %}selected{% endif %}>{{ ue.intitule }}</option>
+              {% endfor %}
+            </select>
+            {% if errors.ues %}
+              <p class="text-danger">{{ errors.ues }}</p>
+            {% endif %}
+          </div>
+          <button type="submit" class="btn btn-primary me-2">Modifier</button>
+          <a href="{% url 'enseignant_list' %}" class="btn btn-dark">Annuler</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

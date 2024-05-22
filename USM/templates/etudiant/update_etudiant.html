@@ -1,0 +1,75 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 grid-margin stretch-card mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Modifier un étudiant</h4>
+        <form method="post" action="">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" class="form-control" id="nom" placeholder="Nom de l'étudiant" value="{{ etudiant.nom }}">
+            {% if errors.nom %}
+              <p class="text-danger">{{ errors.nom }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Prénom de l'étudiant" value="{{ etudiant.prenom }}">
+            {% if errors.prenom %}
+              <p class="text-danger">{{ errors.prenom }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="date_nais">Date de Naissance</label>
+            <input type="date" name="date_nais" class="form-control" id="date_nais" value="{{ etudiant.date_nais|date:'Y-m-d' }}">
+            {% if errors.date_nais %}
+              <p class="text-danger">{{ errors.date_nais }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="contact">Contact</label>
+            <input type="text" name="contact" class="form-control" id="contact" placeholder="Contact de l'étudiant" value="{{ etudiant.contact }}">
+            {% if errors.contact %}
+              <p class="text-danger">{{ errors.contact }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Email de l'étudiant" value="{{ etudiant.email }}">
+            {% if errors.email %}
+              <p class="text-danger">{{ errors.email }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="niveau">Niveau</label>
+            <select class="form-select" name="niveau" id="niveau">
+              {% for value, label in niveau_choices %}
+                <option value="{{ value }}" {% if value == etudiant.niveau %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            {% if errors.niveau %}
+              <p class="text-danger">{{ errors.niveau }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="filiere">Filière</label>
+            <select class="form-select" name="filiere" id="filiere">
+              {% for filiere in filieres %}
+                <option value="{{ filiere.get_object_id }}" {% if filiere.get_object_id == etudiant.filiere.get_object_id %}selected{% endif %}>{{ filiere.intitule }}</option>
+              {% endfor %}
+            </select>
+            {% if errors.filiere %}
+              <p class="text-danger">{{ errors.filiere }}</p>
+            {% endif %}
+          </div>
+          <button type="submit" class="btn btn-primary me-2">Modifier</button>
+          <a href="{% url 'etudiant_list' %}" class="btn btn-dark">Annuler</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

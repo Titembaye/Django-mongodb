@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 grid-margin stretch-card mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-row justify-content-between">
+                    <h4 class="card-title mb-1">Liste du personnel administratif</h4>
+                    <a href="{% url 'personnel_create' %}" class="btn btn-warning btn-sm">+ Ajouter</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th class="text-center">Prénom</th>
+                                <th class="text-center">Poste</th>
+                                <th class="text-center">Contact</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for personnel in personnels %}
+                            <tr>
+                                <td>{{ personnel.nom }}</td>
+                                <td class="text-center">{{ personnel.prenom }}</td>
+                                <td class="text-center">{{ personnel.poste }}</td>
+                                <td class="text-center">{{ personnel.contact }}</td>
+                                <td class="text-center">
+                                    <a href="{{ personnel.get_absolute_url_detail }}" class="btn btn-info btn-sm">Détails</a>
+                                    <a href="{{ personnel.get_absolute_url_edit }}" class="btn btn-primary btn-sm">Modifier</a>
+                                    <a href="{{ personnel.get_absolute_url_delete }}" class="btn btn-danger btn-sm">Supprimer</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

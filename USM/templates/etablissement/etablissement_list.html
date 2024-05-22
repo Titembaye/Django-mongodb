@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-8 mx-auto grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title">Liste des Établissements</h4>
+          <a href="{% url 'etablissement_create' %}" class="btn btn-sm btn-warning">+ Ajouter</a>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th class="text-center">Type</th>
+                <th class="text-center" >Doyen</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for etablissement in etablissements %}
+              <tr>
+                <td>{{ etablissement.nom }}</td>
+                <td class="text-center">{{ etablissement.type }}</td>
+                <td class="text-center">{{ etablissement.doyen.nom }} {{ etablissement.doyen.prenom }}</td>
+                <td class="text-center">
+                  <a href="{{ etablissement.get_absolute_url_detail }}" class="btn btn-sm btn-info">Détails</a>
+                  <a href="{{ etablissement.get_absolute_url_edit }}" class="btn btn-sm btn-primary">Modifier</a>
+                  <a href="{{ etablissement.get_absolute_url_delete }}" class="btn btn-sm btn-danger">Supprimer</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

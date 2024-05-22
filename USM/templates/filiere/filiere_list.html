@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-8 mx-auto grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title">Liste des Filières</h4>
+          <a href="{% url 'filiere_create' %}" class="btn btn-sm btn-warning">+ Ajouter</a>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th class="text-center">Intitulé</th>
+                <th class="text-center">Etablissement</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for filiere in filieres %}
+              <tr>
+                <td>{{ filiere.code }}</td>
+                <td class="text-center">{{ filiere.intitule }}</td>
+                <td class="text-center">{{ filiere.etablissement }}</td>
+                <td class="text-center">
+                    <a href="{{ filiere.get_absolute_url_detail }}" class="btn btn-sm btn-info">Détails</a>
+                  <a href="{{ filiere.get_absolute_url_edit }}" class="btn btn-sm btn-primary">Modifier</a>
+                  <a href="{{ filiere.get_absolute_url_delete }}" class="btn btn-sm btn-danger">Supprimer</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="col-md-8 grid-margin stretch-card mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+          <h4 class="card-title mb-1">Détails de la filière</h4>
+          <a href="{% url 'filiere_list' %}" class="btn btn-secondary mb-1">Retour</a>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="preview-list">
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-primary">
+                    <i class="mdi mdi-book-open"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">{{ filiere.code }}</h6>
+                    <p class="text-muted mb-0">{{ filiere.intitule }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="mdi mdi-school"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">Établissement</h6>
+                    <p class="text-muted mb-0">{{ filiere.etablissement.nom }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="mdi mdi-account"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">Responsable</h6>
+                    <p class="text-muted mb-0">{{ filiere.responsable.nom }} {{ filiere.responsable.prenom }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="mdi mdi-book-multiple"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">UEs Obligatoires</h6>
+                    <ul class="text-muted mb-0">
+                      {% for ue in filiere.ueObligatoires.all %}
+                        <li>{{ ue.intitule }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-item border-bottom">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-secondary">
+                    <i class="mdi mdi-book-plus"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content d-sm-flex flex-grow">
+                  <div class="flex-grow">
+                    <h6 class="preview-subject">UEs Optionnelles</h6>
+                    <ul class="text-muted mb-0">
+                      {% for ue in filiere.ueOptionnelles.all %}
+                        <li>{{ ue.intitule }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+          <a href="{{ filiere.get_absolute_url_edit }}" class="btn btn-primary">Modifier</a>
+          <a href="{{ filiere.get_absolute_url_delete }}" class="btn btn-danger">Supprimer</a>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

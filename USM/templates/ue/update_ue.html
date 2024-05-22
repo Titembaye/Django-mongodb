@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 mx-auto grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Mettre à jour l'Unité d'Enseignement (UE)</h4>
+        <form method="post" action="{{ ue.get_absolute_url_edit }}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="code">Code</label>
+            <input type="text" name="code" class="form-control" id="code" value="{{ ue.code }}" placeholder="Code">
+            {% if form.code.errors %}
+              <p class="text-danger">{{ form.code.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="intitule">Intitulé</label>
+            <input type="text" name="intitule" class="form-control" id="intitule" value="{{ ue.intitule }}" placeholder="Intitulé">
+            {% if form.intitule.errors %}
+              <p class="text-danger">{{ form.intitule.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" class="form-control" id="description" placeholder="Description">{{ ue.description }}</textarea>
+          </div>
+          <button type="submit" class="btn btn-primary me-2">Mettre à jour</button>
+          <a href="{% url 'ue_list' %}" class="btn btn-dark">Annuler</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

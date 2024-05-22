@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 mx-auto grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Ajouter une filière</h4>
+        <form method="post" action="{% url 'filiere_create' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="code">Code</label>
+            <input type="text" name="code" class="form-control" id="code" placeholder="Code">
+            {% if form.code.errors %}
+              <p class="text-danger">{{ form.code.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="intitule">Intitulé</label>
+            <input type="text" name="intitule" class="form-control" id="intitule" placeholder="Intitulé">
+            {% if form.intitule.errors %}
+              <p class="text-danger">{{ form.intitule.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="etablissement">Établissement</label>
+            <select class="form-select" name="etablissement" id="etablissement">
+              {% for etablissement in etablissements %}
+              <option value="{{ etablissement.get_object_id }}">{{ etablissement.nom }}</option>
+              {% endfor %}
+            </select>
+            {% if form.etablissement.errors %}
+              <p class="text-danger">{{ form.etablissement.errors }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="responsable">Responsable</label>
+            <select class="form-select" name="responsable" id="responsable">
+              {% for enseignant in enseignants %}
+              <option value="{{ enseignant.get_object_id }}" {% if form.responsable == enseignant.get_object_id %}selected{% endif %}>{{ enseignant.nom }} {{ enseignant.prenom }}</option>
+              {% endfor %}
+            </select>
+            {% if errors.responsable %}
+              <p class="text-danger">{{ errors.responsable }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="ue_obligatoires">UEs Obligatoires</label>
+            <select multiple class="form-select" name="ue_obligatoires" id="ue_obligatoires">
+              {% for ue in ues %}
+              <option value="{{ ue.get_object_id }}" {% if form.ue_obligatoires and ue.get_object_id in form.ue_obligatoires %}selected{% endif %}>{{ ue.intitule }}</option>
+              {% endfor %}
+            </select>
+            {% if errors.ue_obligatoires %}
+              <p class="text-danger">{{ errors.ue_obligatoires }}</p>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="ue_optionnelles">UEs Optionnelles</label>
+            <select multiple class="form-select" name="ue_optionnelles" id="ue_optionnelles">
+              {% for ue in ues %}
+              <option value="{{ ue.get_object_id }}" {% if form.ue_optionnelles and ue.get_object_id in form.ue_optionnelles %}selected{% endif %}>{{ ue.intitule }}</option>
+              {% endfor %}
+            </select>
+            {% if errors.ue_optionnelles %}
+              <p class="text-danger">{{ errors.ue_optionnelles }}</p>
+            {% endif %}
+          </div>
+          <button type="submit" class="btn btn-primary me-2">Ajouter</button>
+          <a href="{% url 'filiere_list' %}" class="btn btn-dark">Annuler</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

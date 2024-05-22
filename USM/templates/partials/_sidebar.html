@@ -1,0 +1,191 @@
+{% load static %}
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+        <h2>USM</h2>
+    </div>
+    <ul class="nav">
+        <li class="nav-item profile">
+            <div class="profile-desc">
+                <div class="profile-pic">
+                    <div class="count-indicator">
+                        <img class="img-xs rounded-circle " src="{% static 'assets/images/faces/face15.jpg' %}" alt="">
+                        <span class="count bg-success"></span>
+                    </div>
+                    <div class="profile-name">
+                        <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
+                        <span>Gold Member</span>
+                    </div>
+                </div>
+                <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+                <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                    <a href="#" class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-dark rounded-circle">
+                                <i class="mdi mdi-cog text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                        </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-dark rounded-circle">
+                                <i class="mdi mdi-onepassword text-info"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                        </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-dark rounded-circle">
+                                <i class="mdi mdi-calendar-today text-success"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                </span>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-icon">
+                    <i class="mdi mdi-school"></i>
+                </span>
+                <span class="menu-title">Etablissements</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'etablissement_list' %}">Liste des Etablissements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'etablissement_create' %}">Ajouter un Etablissement</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-bs-toggle="collapse" href="#filiere" aria-expanded="false" aria-controls="filiere">
+                <span class="menu-icon">
+                    <i class="mdi mdi-book-open"></i>
+                </span>
+                <span class="menu-title">Filières</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="filiere">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'filiere_list' %}">Liste des Filières</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'filiere_create' %}">Ajouter une Filière</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ue" aria-expanded="false" aria-controls="ue">
+                <span class="menu-icon">
+                    <i class="mdi mdi-book-multiple"></i>
+                </span>
+                <span class="menu-title">UEs</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ue">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ue_list' %}">Liste des UE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ue_create' %}">Ajouter une UE</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-bs-toggle="collapse" href="#etudiants" aria-expanded="false" aria-controls="etudiants">
+                <span class="menu-icon">
+                    <i class="mdi mdi-account-multiple"></i>
+                </span>
+                <span class="menu-title">Etudiants</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="etudiants">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'etudiant_list' %}">Liste des Etudiants</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'etudiant_create' %}">Ajouter un Etudiant</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-bs-toggle="collapse" href="#personnels-administratifs" aria-expanded="false" aria-controls="personnels-administratifs">
+                <span class="menu-icon">
+                    <i class="mdi mdi-account-tie"></i>
+                </span>
+                <span class="menu-title">Personnels</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="personnels-administratifs">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'personnel_list' %}">Liste des Personnels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'personnel_create' %}">Ajouter un Personnel</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-bs-toggle="collapse" href="#enseignants" aria-expanded="false" aria-controls="enseignants">
+                <span class="menu-icon">
+                    <i class="mdi mdi-account-tie"></i>
+                </span>
+                <span class="menu-title">Enseignants</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="enseignants">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'enseignant_list' %}">Liste des Enseignants</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'enseignant_create' %}">Ajouter un Enseignant</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="#">
+                <span class="menu-icon">
+                    <i class="mdi mdi-dots-horizontal"></i>
+                </span>
+                <span class="menu-title">Autres</span>
+            </a>
+        </li>
+    </ul>
+</nav>
