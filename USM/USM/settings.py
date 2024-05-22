@@ -64,6 +64,7 @@ WSGI_APPLICATION = 'USM.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
