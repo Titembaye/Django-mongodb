@@ -175,4 +175,4 @@ def etudiant_delete(request, id):
         etudiant.is_deleted = True
         etudiant.save()
         return redirect('etudiant_list')
-    return render(request, 'etudiant_confirm_delete.html', {'etudiant': etudiant})
+    return render(request, 'etudiant/confirm_delete.html', {'etudiant': etudiant})

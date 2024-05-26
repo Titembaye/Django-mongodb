@@ -22,7 +22,6 @@
                 <th>Contact</th>
                 <th>Email</th>
                 <th>Niveau</th>
-                <th>Filière</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -35,7 +34,6 @@
                 <td>{{ etudiant.contact }}</td>
                 <td>{{ etudiant.email }}</td>
                 <td>{{ etudiant.niveau }}</td>
-                <td>{{ etudiant.filiere.intitule }}</td>
                 <td>
                   <a href="{{ etudiant.get_absolute_url_detail }}" class="btn btn-sm btn-info">Détails</a>
                   <a href="{{ etudiant.get_absolute_url_edit }}" class="btn btn-sm btn-primary">Modifier</a>

@@ -8,3 +8,9 @@ class EtudiantForm(forms.ModelForm):
         widgets = {
             'date_nais': forms.DateInput(attrs={'type': 'date'}),
         }
+
+
+# -*- encoding: utf-8 -*-
+"""
+Copyright (c) 2019 - present AppSeed.us
+"""

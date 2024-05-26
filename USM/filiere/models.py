@@ -175,3 +175,4 @@ class Etablissement(models.Model):
     def get_absolute_url_detail(self):
         return reverse('etablissement_detail', kwargs={'id': str(self._id)})
 
+
